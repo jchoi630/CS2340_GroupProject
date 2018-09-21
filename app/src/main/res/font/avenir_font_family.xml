@@ -4,7 +4,7 @@
     <font
         android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/avenir_medium"
+        android:font="@font/avenir_light"
         app:fontStyle="normal"
         app:fontWeight="400"
         app:font="@font/avenir_light"
