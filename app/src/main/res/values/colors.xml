@@ -4,5 +4,5 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorAppWhite">#FFFFFF</color>
-    <color name="colorWhiteHalfOpacity">#FFFFFF80</color>
+    <color name="colorFadedWhite">#B4EBB8</color>
 </resources>

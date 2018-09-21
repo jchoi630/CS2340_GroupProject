@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".LoginActivity"
+    android:weightSum="3">
+
+    <!--
+        Wrapping the elements in relative layout to
+        use centerHorizontal at the same time as
+        using LinearLayout's weight to split the screen
+        into thirds
+    -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/welcome_text"
+            android:textColor="@color/colorAppWhite"
+            android:textSize="38sp"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+
+
+        <EditText
+            android:id="@+id/emailField"
+            android:layout_width="275dp"
+            android:layout_height="40dp"
+            android:textColor="@color/colorAppWhite"
+            android:textCursorDrawable="@drawable/white_cursor"
+            android:textSize="20sp"
+            android:hint="@string/email_field"
+            android:textColorHint="@color/colorFadedWhite"
+            android:paddingStart="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:layout_above="@+id/passwordField"
+            android:backgroundTint="@color/colorAppWhite"/>
+
+        <EditText
+            android:id="@+id/passwordField"
+            android:layout_alignParentBottom="true"
+            android:layout_width="275dp"
+            android:layout_height="40dp"
+            android:inputType="textPassword"
+            android:textColor="@color/colorAppWhite"
+            android:paddingStart="10dp"
+            android:textCursorDrawable="@drawable/white_cursor"
+            android:textSize="20sp"
+            android:hint="@string/password_field"
+            android:textColorHint="@color/colorFadedWhite"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="60dp"
+            android:backgroundTint="@color/colorAppWhite"/>
+
+        <EditText
+            android:id="@+id/resetEmailField"
+            android:layout_alignParentBottom="true"
+            android:layout_width="275dp"
+            android:layout_height="40dp"
+            android:textColor="@color/colorAppWhite"
+            android:paddingStart="10dp"
+            android:textCursorDrawable="@drawable/white_cursor"
+            android:textSize="20sp"
+            android:hint="@string/email_field"
+            android:textColorHint="@color/colorFadedWhite"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="100dp"
+            android:backgroundTint="@color/colorAppWhite"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="275dp"
+            android:layout_height="35dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/login_button"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/white_outline_button"
+            android:textColor="@color/colorAppWhite"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:onClick="submit"
+            android:stateListAnimator="@null"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/forgotPasswordText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/submitButton"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorAppWhite"
+            android:textSize="18sp"
+            android:text="@string/forgot_password_text"
+            android:onClick="forgotPassword"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/colorAppWhite"
+            android:textSize="14sp"
+            android:text="@string/copyright_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

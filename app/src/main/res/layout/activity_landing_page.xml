@@ -1,30 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".LandingPage">
+    android:orientation="vertical"
+    tools:context=".LandingPage"
+    android:weightSum="3">
 
-    <EditText
-        android:id="@+id/email_edit_text"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/colorAppWhite"
-        android:textColor="@color/colorAppWhite"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:hint="@string/email_field"/>
+    <!--
+        Wrapping the elements in relative layout to
+        use centerHorizontal at the same time as
+        using LinearLayout's weight to split the screen
+        into thirds
+    -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <EditText
-        android:id="@+id/password_edit_text"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/colorAppWhite"
-        android:textColor="@color/colorAppWhite"
-        android:layout_below="@+id/email_edit_text"
-        android:layout_marginTop="30dp"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:hint="@string/password_field"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/app_name"
+            android:textColor="@color/colorAppWhite"
+            android:textSize="38sp"
+            android:layout_alignParentBottom="true"/>
 
-</RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="275dp"
+            android:layout_height="35dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/signup_button"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/white_outline_button"
+            android:textColor="@color/colorAppWhite"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:onClick="signUp"
+            android:layout_marginBottom="10dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="275dp"
+            android:layout_height="35dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/login_button"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/white_fill_button"
+            android:textColor="@color/colorPrimary"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:onClick="logIn"
+            android:stateListAnimator="@null"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/colorAppWhite"
+            android:textSize="14sp"
+            android:text="@string/copyright_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

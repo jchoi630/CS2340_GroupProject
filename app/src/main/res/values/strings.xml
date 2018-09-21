@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">givr</string>
+    <string name="welcome_text">Welcome, User!</string>
+    <string name="copyright_text">2018, Gaggle Inc.</string>
 
-    <string name="email_field"><font size="12">Email</font></string>
-    <string name="password_field"><font size="12">Password</font></string>
+    <string name="login_button">Log In</string>
+    <string name="signup_button">Sign Up</string>
+    <string name="reset_button">Reset</string>
+
+    <string name="email_field"><font size="14">Email</font></string>
+    <string name="password_field"><font size="14">Password</font></string>
+    <string name="forgot_password_text">Forgot password?</string>
 </resources>
