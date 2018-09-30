@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="userPassIncorrect" type="id" />
+    <item name="logOutButton" type="id" />
+</resources>

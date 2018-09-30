@@ -1,6 +1,7 @@
 package com.gaggle.givr;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,11 @@ import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
 
+    String adminUser = "admin";
+    String adminPass = "admin";
+    TextView userPassIncorrect;
+
+
     LoginState state;
 
     // Element References
@@ -19,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText resetEmailField;
     Button submitButton;
     TextView forgotPasswordText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         resetEmailField = (EditText) findViewById(R.id.resetEmailField);
         submitButton = (Button) findViewById(R.id.submitButton);
         forgotPasswordText = (TextView) findViewById(R.id.forgotPasswordText);
+        userPassIncorrect = (TextView) findViewById(R.id.userPassIncorrect);
 
         // Retrieve and set state
         state = (LoginState) getIntent().getSerializableExtra("LoginState");
@@ -72,6 +80,20 @@ public class LoginActivity extends AppCompatActivity {
                 + ", Reset Email Field: " + resetEmailField.getText().toString();
 
         System.out.println(displayString);
+        if (emailField.getText().toString().equals(adminUser) && passwordField.getText().toString().equals(adminPass)){
+            //forgotPasswordText.setVisibility(View.INVISIBLE);
+            navigateToDashboardActivity();
+        } else {
+                //forgotPasswordText.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    private void navigateToDashboardActivity() {
+        //action you want, to start new activity, params are the things you go from (this paeg to next page)
+        Intent dashboardActivityIntent = new Intent(LoginActivity.this, DashboardActivity.class);
+        dashboardActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        LoginActivity.this.startActivity(dashboardActivityIntent);
     }
 
     public enum LoginState {
