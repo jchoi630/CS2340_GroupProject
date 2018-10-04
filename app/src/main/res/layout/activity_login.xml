@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="@string/welcome_text"
+            android:id="@+id/welcomeText"
             android:textColor="@color/colorAppWhite"
             android:textSize="38sp"
             android:layout_alignParentBottom="true"/>
