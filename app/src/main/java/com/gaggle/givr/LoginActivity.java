@@ -2,6 +2,7 @@ package com.gaggle.givr;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
+
+    String adminUser = "admin";
+    String adminPass = "admin";
 
     LoginState state;
 
@@ -185,6 +189,14 @@ public class LoginActivity extends AppCompatActivity {
                 + ", Reset Email Field: " + resetEmailField.getText().toString();
 
         System.out.println(displayString);
+        if (emailField.getText().toString().equals(adminUser) && passwordField.getText().toString().equals(adminPass))
+            navigateToDashboardActivity();
+    }
+
+    private void navigateToDashboardActivity() {
+        //action you want, to start new activity, params are the things you go from (this paeg to next page)
+        Intent dashboardActivityIntent = new Intent(LoginActivity.this, DashboardActivity.class);
+        LoginActivity.this.startActivity(dashboardActivityIntent);
     }
 
     public enum LoginState {
