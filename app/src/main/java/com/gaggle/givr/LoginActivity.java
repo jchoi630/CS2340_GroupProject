@@ -1,6 +1,7 @@
 package com.gaggle.givr;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,8 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Store elements as variables
+        // Store elements as variables - buttons
         emailField = (EditText) findViewById(R.id.emailField);
         passwordField = (EditText) findViewById(R.id.passwordField);
         resetEmailField = (EditText) findViewById(R.id.resetEmailField);
@@ -69,16 +72,37 @@ public class LoginActivity extends AppCompatActivity {
         //Check if user is signed in (non-null) and update UI accordingly
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            welcomeText.setText("user not found!");
+            welcomeText.setText("Welcome, " + currentUser.getDisplayName());
         } else {
-            welcomeText.setText("congrats!!");
+            welcomeText.setText("Please log in");
         }
     }
 
+    /**
+     * Create user account
+     *
+     * @param email user email
+     * @param password user password
+     */
+    private void createAccount(String email, String password) {
+        if (!validateForm()) {
+            return;
+        }
 
+        mAuth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        //Sign in success, update UI with signed-in user's info
+                        FirebaseUser user = mAuth.getCurrentUser();
+                    } else {
+                        //If sign in fails, display message to user ??
+                    }
+                }
+            });
+    }
 
-
-    //
     private boolean validateForm() {
         boolean valid = true;
 
@@ -99,6 +123,45 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return valid;
+    }
+
+    /**
+     * Sign in method
+     *
+     * @param email user email
+     * @param password user password
+     */
+
+    private void signIn(String email, String password) {
+        if (!validateForm()) {
+            return;
+        }
+
+        // Start sign in w email
+        mAuth.signInWithEmailAndPassword(email, password)
+             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI w user's info
+                        FirebaseUser user = mAuth.getCurrentUser();
+                    } else {
+                        // ?
+                    }
+
+                    // start exclude
+                    if (!task.isSuccessful()) {
+                        // add status text????
+                    }
+                }
+        });
+    }
+
+    /**
+     * Sign out method
+     */
+    public void signOut() {
+        FirebaseAuth.getInstance().signOut();
     }
 
     @Override
