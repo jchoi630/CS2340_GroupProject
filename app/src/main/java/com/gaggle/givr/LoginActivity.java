@@ -1,6 +1,7 @@
 package com.gaggle.givr;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,12 +35,14 @@ public class LoginActivity extends AppCompatActivity {
     Button submitButton;
     TextView forgotPasswordText;
     FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
     TextView welcomeText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        FirebaseApp.initializeApp(this);
 
         // Store elements as variables - buttons
         emailField = (EditText) findViewById(R.id.emailField);
@@ -66,8 +70,22 @@ public class LoginActivity extends AppCompatActivity {
         resetEmailField.setOnFocusChangeListener(hideKeyboardListener);
 
         //Initializing Firebase & Email/Password Creation
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                System.out.println("auth state changed I guess");
+            }
+        };
         mAuth = FirebaseAuth.getInstance();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 
     @Override
@@ -110,21 +128,21 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validateForm() {
         boolean valid = true;
 
-        String email = emailField.getText().toString();
-        if (TextUtils.isEmpty(email)) {
-            emailField.setError("Required.");
-            valid = false;
-        } else {
-            emailField.setError(null);
-        }
-
-        String password = passwordField.getText().toString();
-        if (TextUtils.isEmpty(password)) {
-            passwordField.setError("Required.");
-            valid = false;
-        } else {
-            passwordField.setError(null);
-        }
+//        String email = emailField.getText().toString();
+//        if (TextUtils.isEmpty(email)) {
+//            emailField.setError("Required.");
+//            valid = false;
+//        } else {
+//            emailField.setError(null);
+//        }
+//
+//        String password = passwordField.getText().toString();
+//        if (TextUtils.isEmpty(password)) {
+//            passwordField.setError("Required.");
+//            valid = false;
+//        } else {
+//            passwordField.setError(null);
+//        }
 
         return valid;
     }
@@ -149,13 +167,9 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI w user's info
                         FirebaseUser user = mAuth.getCurrentUser();
+                        System.out.println("USER CREATEDS!!!");
                     } else {
-                        // ?
-                    }
-
-                    // start exclude
-                    if (!task.isSuccessful()) {
-                        // add status text????
+                        System.out.println("USER WAS NOT CREATED :(");
                     }
                 }
         });
@@ -163,6 +177,7 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * Sign out method
+     * 
      */
     public void signOut() {
         FirebaseAuth.getInstance().signOut();
@@ -189,8 +204,23 @@ public class LoginActivity extends AppCompatActivity {
                 + ", Reset Email Field: " + resetEmailField.getText().toString();
 
         System.out.println(displayString);
-        if (emailField.getText().toString().equals(adminUser) && passwordField.getText().toString().equals(adminPass))
-            navigateToDashboardActivity();
+//        if (emailField.getText().toString().equals(adminUser) && passwordField.getText().toString().equals(adminPass))
+//            navigateToDashboardActivity();
+
+        switch (this.state) {
+            case SIGNUP:
+                System.out.println("Singup State");
+                createAccount(emailField.getText().toString(), passwordField.getText().toString());
+                break;
+            case FORGOT_PASSWORD:
+                System.out.println("forgetti State");
+                return;
+            default:
+            case LOGIN:
+                System.out.println("signin/def State");
+                signIn(emailField.getText().toString(), passwordField.getText().toString());
+                break;
+        }
     }
 
     private void navigateToDashboardActivity() {
