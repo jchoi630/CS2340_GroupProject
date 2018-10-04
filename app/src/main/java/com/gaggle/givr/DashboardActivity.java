@@ -16,7 +16,6 @@ public class DashboardActivity extends AppCompatActivity {
     public void navigateBackToLandingPage(View v) {
         //action you want, to start new activity, params are the things you go from (this page to next page)
         Intent backToLandingPage = new Intent(DashboardActivity.this, LandingPage.class);
-        backToLandingPage.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         DashboardActivity.this.startActivity(backToLandingPage);
     }
 }

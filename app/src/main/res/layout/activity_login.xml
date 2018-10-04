@@ -85,7 +85,6 @@
             android:layout_marginBottom="100dp"
             android:backgroundTint="@color/colorAppWhite"/>
 
-
     </RelativeLayout>
 
     <RelativeLayout
