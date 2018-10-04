@@ -10,4 +10,9 @@
     <string name="email_field"><font size="14">Email</font></string>
     <string name="password_field"><font size="14">Password</font></string>
     <string name="forgot_password_text">Forgot password?</string>
+
+    <string-array name="user_type">
+        <item>User</item>
+        <item>Admin</item>
+    </string-array>
 </resources>

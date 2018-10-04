@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Spinner;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText resetEmailField;
     Button submitButton;
     TextView forgotPasswordText;
+    Spinner userTypeSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         resetEmailField = (EditText) findViewById(R.id.resetEmailField);
         submitButton = (Button) findViewById(R.id.submitButton);
         forgotPasswordText = (TextView) findViewById(R.id.forgotPasswordText);
+        userTypeSpinner = (Spinner) findViewById(R.id.userTypeSpinner);
 
         // Retrieve and set state
         state = (LoginState) getIntent().getSerializableExtra("LoginState");
@@ -52,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
         emailField.setOnFocusChangeListener(hideKeyboardListener);
         passwordField.setOnFocusChangeListener(hideKeyboardListener);
         resetEmailField.setOnFocusChangeListener(hideKeyboardListener);
-
     }
 
     @Override
@@ -71,13 +73,25 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void submit(View v) {
-        String displayString = "Email Field: " + emailField.getText().toString()
-                + ", Password Field: " + passwordField.getText().toString()
-                + ", Reset Email Field: " + resetEmailField.getText().toString();
+        User tempUser;
+        if (state == LoginState.SIGNUP) {
+            tempUser = new User(emailField.getText().toString(),
+                    passwordField.getText().toString(),
+                    userTypeSpinner.getSelectedItem().toString());
 
-        System.out.println(displayString);
-        if (emailField.getText().toString().equals(adminUser) && passwordField.getText().toString().equals(adminPass))
+            User.userMap.put(emailField.getText().toString(),tempUser);
             navigateToDashboardActivity();
+        }
+        if (state == LoginState.LOGIN) {
+            tempUser = User.userMap.get(emailField.getText().toString());
+            if (tempUser == null) {
+                System.out.println("User does not exist");
+                return;
+            }
+            if (tempUser.password.equals(passwordField.getText().toString())) {
+                navigateToDashboardActivity();
+            }
+        }
     }
 
     private void navigateToDashboardActivity() {
@@ -125,6 +139,9 @@ public class LoginActivity extends AppCompatActivity {
             passwordField.setVisibility(View.VISIBLE);
 
             resetEmailField.setVisibility(View.GONE);
+        }
+        if (state != LoginState.SIGNUP) {
+            userTypeSpinner.setVisibility(View.GONE);
         }
     }
 
