@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "398353833955",
+    "firebase_url": "https://givr-4fa08.firebaseio.com",
+    "project_id": "givr-4fa08",
+    "storage_bucket": "givr-4fa08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398353833955:android:d817099136f1b16c",
+        "android_client_info": {
+          "package_name": "com.gaggle.givr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398353833955-l92mgh6t72f87s41vfi35iri0o89pbmi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gaggle.givr",
+            "certificate_hash": "1554455c24de9d726709856a00065b29e8b15607"
+          }
+        },
+        {
+          "client_id": "398353833955-8v62drsu2jqtlnkp3kc7q8pk1ai48t72.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gaggle.givr",
+            "certificate_hash": "37c94f1b750650c6361b28dffe90331aac180ff0"
+          }
+        },
+        {
+          "client_id": "398353833955-sq4khs5tloatikdr0jh0vo0bbc951dof.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-AWEmRRKaZHe91UMn1S7PbNP_HyApn_Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398353833955-sq4khs5tloatikdr0jh0vo0bbc951dof.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
