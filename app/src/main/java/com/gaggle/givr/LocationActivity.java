@@ -13,8 +13,7 @@ import java.util.ArrayList;
 
 public class LocationActivity {
 
-    public ArrayList parseCsv() {
-
+    public static void main (String[] args) {
         String csvFile = "\"C:\\..\\..\\..\\..\\Gaggle\\app\\src\\main\\java\\com\\gaggle\\givr\\LocationData.csv\"";
 
         BufferedReader br = null;
@@ -71,6 +70,5 @@ public class LocationActivity {
             }
 
         }
-        return locations;
     }
 }
