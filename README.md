@@ -6,4 +6,4 @@ This project will have something to do with a non-profit, we are making an app.
 We also plan on developing our group developing skills!
 Hello friends!
 
-- Phillip K Contributed
+- Phillip K Contributed (nothing)
