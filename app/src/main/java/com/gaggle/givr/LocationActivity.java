@@ -13,63 +13,64 @@ import java.util.ArrayList;
 
 public class LocationActivity {
 
-    String csvFile = "\"C:\\..\\..\\..\\..\\Gaggle\\app\\src\\main\\java\\com\\gaggle\\givr\\LocationData.csv\"";
+    public ArrayList parseCsv() {
 
-    BufferedReader br = null;
+        String csvFile = "\"C:\\..\\..\\..\\..\\Gaggle\\app\\src\\main\\java\\com\\gaggle\\givr\\LocationData.csv\"";
 
-    String line = "";
+        BufferedReader br = null;
 
-    String csvSplitBy = ",";
+        String line = "";
 
-    ArrayList<Location> locations = new ArrayList<>();
+        String csvSplitBy = ",";
 
-
-
-    try {
-
-        br = new BufferedReader(new FileReader(csvFile));
-
-        while ((line = br.readLine()) != null) {
+        ArrayList<Location> locations = new ArrayList<>();
 
 
+        try {
 
-            String[] locationData = line.split(csvSplitBy);
+            br = new BufferedReader(new FileReader(csvFile));
 
-            if (!(locationData[0].equals("Key"))) {
+            while ((line = br.readLine()) != null) {
 
-                Location l = new Location(locationData[0], locationData[1], locationData[2], locationData[3], locationData[4], locationData[5], locationData[6], locationData[7], locationData[8], locationData[9], locationData[10]);
 
-                locations.add(l);
+                String[] locationData = line.split(csvSplitBy);
+
+                if (!(locationData[0].equals("Key"))) {
+
+                    Location l = new Location(locationData[0], locationData[1], locationData[2], locationData[3], locationData[4], locationData[5], locationData[6], locationData[7], locationData[8], locationData[9], locationData[10]);
+
+                    locations.add(l);
+
+                }
+
+            }
+
+
+        } catch (FileNotFoundException e) {
+
+            e.printStackTrace();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (br != null) {
+
+                try {
+
+                    br.close();
+
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+
+                }
 
             }
 
         }
-
-
-
-    } catch (FileNotFoundException e) {
-
-        e.printStackTrace();
-
-    } catch (IOException e) {
-
-        e.printStackTrace();
-
-    } finally {
-
-        if (br != null) {
-
-            try {
-
-                br.close();
-
-            } catch (IOException e) {
-
-                e.printStackTrace();
-
-            }
-
-        }
-
+        return locations;
     }
 }
