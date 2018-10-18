@@ -12,10 +12,7 @@ import android.widget.TextView;
 import android.widget.Spinner;
 
 public class LoginActivity extends AppCompatActivity {
-
-    String adminUser = "admin";
-    String adminPass = "admin";
-
+    User admin;
     LoginState state;
 
     // Element References
@@ -42,6 +39,10 @@ public class LoginActivity extends AppCompatActivity {
         // Retrieve and set state
         state = (LoginState) getIntent().getSerializableExtra("LoginState");
         setLoginState(state);
+
+        // Store default user
+        admin = new User("admin", "admin", "User");
+        User.userMap.put("admin", admin);
 
         // Set inputs to hide keyboard when use clicks away
         View.OnFocusChangeListener hideKeyboardListener = new View.OnFocusChangeListener() {
@@ -80,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                     userTypeSpinner.getSelectedItem().toString());
 
             User.userMap.put(emailField.getText().toString(),tempUser);
-            navigateToDashboardActivity();
+            navigateToLocationListPage();
         }
         if (state == LoginState.LOGIN) {
             tempUser = User.userMap.get(emailField.getText().toString());
@@ -89,15 +90,14 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
             if (tempUser.password.equals(passwordField.getText().toString())) {
-                navigateToDashboardActivity();
+                navigateToLocationListPage();
             }
         }
     }
 
-    private void navigateToDashboardActivity() {
-        //action you want, to start new activity, params are the things you go from (this paeg to next page)
-        Intent dashboardActivityIntent = new Intent(LoginActivity.this, DashboardActivity.class);
-        LoginActivity.this.startActivity(dashboardActivityIntent);
+    private void navigateToLocationListPage() {
+        Intent locationListPageIntent = new Intent(LoginActivity.this, LocationListPage.class);
+        LoginActivity.this.startActivity(locationListPageIntent);
     }
 
     public enum LoginState {
