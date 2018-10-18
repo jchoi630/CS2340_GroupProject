@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.io.BufferedReader;
@@ -11,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class LocationListPage extends AppCompatActivity {
@@ -27,8 +29,20 @@ public class LocationListPage extends AppCompatActivity {
         locationListView = findViewById(R.id.locationListView);
         listAdapter = new LocationListAdapter(locations, this);
         locationListView.setAdapter(listAdapter);
+        locationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
+                navigateToLocationItem(locations.get(pos));
+            }
+        });
 
         importCSV();
+    }
+
+    public void navigateToLocationItem(Location location) {
+        Intent toLocationItem = new Intent(LocationListPage.this, LocationItemPage.class);
+        toLocationItem.putExtra("location", (Serializable) location);
+        LocationListPage.this.startActivity(toLocationItem);
     }
 
     public void navigateBackToLandingPage(View v) {

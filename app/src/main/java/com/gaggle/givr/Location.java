@@ -1,6 +1,8 @@
 package com.gaggle.givr;
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable {
     private String key;
     private String name;
     private String latitude;

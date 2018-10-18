@@ -21,7 +21,7 @@ public class LocationListAdapter extends ArrayAdapter<Location> {
     public LocationListAdapter(ArrayList<Location> list, Context context) {
         super(context, R.layout.location_item, list);
         this.list = list;
-        this.mContext =context;
+        this.mContext = context;
     }
 
     @Override
