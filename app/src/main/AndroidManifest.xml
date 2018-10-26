@@ -24,7 +24,8 @@
         <activity
             android:name=".LocationListPage"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
-        <activity android:name=".LocationItemPage"></activity>
+        <activity android:name=".LocationItemPage" />
+        <activity android:name=".ItemPage"></activity>
     </application>
 
 </manifest>

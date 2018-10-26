@@ -1,8 +1,11 @@
 package com.gaggle.givr;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Button;
 
 public class LocationItemPage extends AppCompatActivity {
     Location location;
@@ -18,6 +21,8 @@ public class LocationItemPage extends AppCompatActivity {
     TextView phone;
     TextView website;
 
+    Button Item_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +33,7 @@ public class LocationItemPage extends AppCompatActivity {
         bindFields();
         setFields(location);
     }
+
 
     private void bindFields() {
         name = findViewById(R.id.name);
@@ -40,7 +46,10 @@ public class LocationItemPage extends AppCompatActivity {
         type = findViewById(R.id.type);
         phone = findViewById(R.id.phone);
         website = findViewById(R.id.website);
+
+        Item_button = findViewById(R.id.Item_button);
     }
+
 
     private void setFields(Location location) {
         name.setText(location.getName());
@@ -54,4 +63,12 @@ public class LocationItemPage extends AppCompatActivity {
         phone.setText(location.getPhone());
         website.setText(location.getWebsite());
     }
+    /*
+     * Go to the item page
+     */
+    private void navigateToItemPage() {
+        Intent ItemPage = new Intent(LocationItemPage.this, ItemPage.class);
+        LocationItemPage.this.startActivity(ItemPage);
+    }
 }
+
