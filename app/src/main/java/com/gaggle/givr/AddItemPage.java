@@ -1,5 +1,6 @@
 package com.gaggle.givr;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class AddItemPage extends AppCompatActivity {
 
@@ -36,6 +38,9 @@ public class AddItemPage extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "TBD", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+                submit();
+
             }
         });
 
@@ -47,7 +52,7 @@ public class AddItemPage extends AppCompatActivity {
         idField = findViewById(R.id.id);
 
     }
-    public void submit(View v) {
+    public void submit() {
         Item.itemList.add(new Item(
                 "test",
                 nameField.getText().toString(),
@@ -55,6 +60,7 @@ public class AddItemPage extends AppCompatActivity {
                 Integer.parseInt(weightField.getText().toString()),
                 Integer.parseInt(idField.getText().toString())
         ));
+        navigateBackToLocationItemPage();
         System.out.println("TEST I'm a big kid now!");
     }
     public void populateFields(Item item){
@@ -64,5 +70,10 @@ public class AddItemPage extends AppCompatActivity {
             weightField.setText(String.valueOf(item.getWeight()));
             idField.setText(String.valueOf(item.getId()));
         }
+    }
+    public void navigateBackToLocationItemPage() {
+        //action you want, to start new activity, params are the things you go from (this page to next page)
+        Intent backToItemListPage = new Intent(AddItemPage.this, ItemListPage.class);
+        AddItemPage.this.startActivity(backToItemListPage);
     }
 }

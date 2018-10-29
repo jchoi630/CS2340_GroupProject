@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Item implements Serializable {
     public static ArrayList<Item> itemList = new ArrayList<>();
+
     private String location;
     private String name;
     private int quantity;
