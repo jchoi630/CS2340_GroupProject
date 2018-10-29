@@ -7,7 +7,7 @@ public class Item implements Serializable {
     private String name;
     private int quantity;
     private int weight;
-    private  int id;
+    private int id;
 
     public Item (String key, String name, int quantity, int weight, int id){
         this.key = key;
@@ -25,20 +25,19 @@ public class Item implements Serializable {
     public int getQuantity() {
         return quantity;
     }
-    public  int getWeight() {
+    public int getWeight() {
         return weight;
     }
     public int getId() {
         return id;
     }
+
     public void setKey(String key) {
         this.key = key;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
