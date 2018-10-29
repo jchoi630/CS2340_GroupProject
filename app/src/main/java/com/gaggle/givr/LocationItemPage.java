@@ -32,6 +32,7 @@ public class LocationItemPage extends AppCompatActivity {
 
         bindFields();
         setFields(location);
+
         Item_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 navigateToItemPage();
@@ -71,7 +72,7 @@ public class LocationItemPage extends AppCompatActivity {
     /*
      * Go to the item page
      */
-    private void navigateToItemPage() {
+    public void navigateToItemPage() {
         Intent ItemListPage = new Intent(LocationItemPage.this, ItemListPage.class);
         LocationItemPage.this.startActivity(ItemListPage);
     }

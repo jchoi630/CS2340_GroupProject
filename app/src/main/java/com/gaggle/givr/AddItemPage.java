@@ -9,22 +9,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.Serializable;
+
 public class AddItemPage extends AppCompatActivity {
-    /* ************************
-        Widgets we will need for binding and getting information
-     */
-    Item item;
-    private TextView keyField;
-    private EditText nameField;
-    private EditText quantityField;
-    private EditText weightField;
-    private EditText idField;
 
+    TextView locationField;
+    EditText nameField;
+    EditText quantityField;
+    EditText weightField;
+    EditText idField;
 
-    /* ***********************
-       flag for whether this is a new student being added or an existing item being edited;
-    */
-    private boolean needsEditing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +26,12 @@ public class AddItemPage extends AppCompatActivity {
         setContentView(R.layout.activity_add_item_page);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        bindFields();
+        populateFields((Item) getIntent().getSerializableExtra("item"));
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "TBD", Snackbar.LENGTH_LONG)
@@ -43,9 +40,29 @@ public class AddItemPage extends AppCompatActivity {
         });
 
     }
-    nameField = (EditText) findViewById(R.id.name);
-    quantityField = (EditText)findViewById(R.id.quantity);
-    weightField = (EditText)findViewById(R.id.weight);
-    idField = (EditText) findViewById(R.id.id);
+    private void bindFields() {
+        nameField = findViewById(R.id.name);
+        quantityField = findViewById(R.id.quantity);
+        weightField = findViewById(R.id.weight);
+        idField = findViewById(R.id.id);
 
+    }
+    public void submit(View v) {
+        Item.itemList.add(new Item(
+                "test",
+                nameField.getText().toString(),
+                Integer.parseInt(quantityField.getText().toString()),
+                Integer.parseInt(weightField.getText().toString()),
+                Integer.parseInt(idField.getText().toString())
+        ));
+        System.out.println("TEST I'm a big kid now!");
+    }
+    public void populateFields(Item item){
+        if (item != null) {
+            nameField.setText(item.getName());
+            quantityField.setText(String.valueOf(item.getQuantity()));
+            weightField.setText(String.valueOf(item.getWeight()));
+            idField.setText(String.valueOf(item.getId()));
+        }
+    }
 }

@@ -1,23 +1,28 @@
 package com.gaggle.givr;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Item implements Serializable {
-    private String key;
+    public static ArrayList<Item> itemList = new ArrayList<>();
+    private String location;
     private String name;
     private int quantity;
     private int weight;
     private int id;
 
-    public Item (String key, String name, int quantity, int weight, int id){
-        this.key = key;
+    public Item (String location, String name, int quantity, int weight, int id){
+        this.location = location;
         this.name = name;
         this.quantity = quantity;
         this.weight = weight;
         this.id = id;
     }
-    public String getKey() {
-        return key;
+    public Item(){
+
+    }
+    public String getLocation() {
+        return location;
     }
     public String getName(){
         return name;
@@ -32,8 +37,8 @@ public class Item implements Serializable {
         return id;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setLocation(String location) {
+        this.location = location;
     }
     public void setName(String name) {
         this.name = name;

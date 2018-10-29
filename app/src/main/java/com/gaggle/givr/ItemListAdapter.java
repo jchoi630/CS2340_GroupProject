@@ -18,7 +18,7 @@ public class ItemListAdapter extends ArrayAdapter<Item> {
     }
 
     public ItemListAdapter(ArrayList<Item> list, Context context) {
-        super(context, R.layout.activity_manage_item_page, list);
+        super(context, R.layout.item_layout, list);
         this.list = list;
         this.mContext = context;
     }
@@ -31,7 +31,7 @@ public class ItemListAdapter extends ArrayAdapter<Item> {
         if (convertView == null) {
             vh = new ItemListAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.activity_manage_item_page, parent, false);
+            convertView = inflater.inflate(R.layout.item_layout, parent, false);
 
             vh.name = (TextView) convertView.findViewById(R.id.nameText);
             convertView.setTag(vh);
@@ -42,6 +42,4 @@ public class ItemListAdapter extends ArrayAdapter<Item> {
         vh.name.setText(i.getName());
         return convertView;
     }
-}
-
 }

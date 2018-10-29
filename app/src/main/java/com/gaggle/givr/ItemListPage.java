@@ -13,6 +13,8 @@ import java.util.ArrayList;
 public class ItemListPage extends AppCompatActivity {
     private ArrayList<Item> items = new ArrayList<>();
 
+    
+
     ListView itemListView;
     ItemListAdapter listAdapter;
 
@@ -21,27 +23,34 @@ public class ItemListPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list_page);
 
-        itemListView = findViewById(R.id.locationListView);
-        listAdapter = new ItemListAdapter(items, this);
+        itemListView = findViewById(R.id.location_list_view);
+        listAdapter = new ItemListAdapter(items, getApplicationContext());
         itemListView.setAdapter(listAdapter);
         itemListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                navigateToItem(items.get(pos));
+                navigateToEditItem(items.get(pos));
             }
         });
 
     }
 
-    public void navigateToItem(Item item) {
+
+
+    public void navigateToEditItem(Item item) {
         Intent toItem = new Intent(ItemListPage.this, AddItemPage.class);
         toItem.putExtra("item", (Serializable) item);
+        ItemListPage.this.startActivity(toItem);
+    }
+    public void navigateToAddItem(View v) {
+        Intent toItem = new Intent(ItemListPage.this, AddItemPage.class);
+        toItem.putExtra("item", (Serializable) new Item());
         ItemListPage.this.startActivity(toItem);
     }
 
     public void navigateBackToLocationItemPage(View v) {
         //action you want, to start new activity, params are the things you go from (this page to next page)
-        Intent backToLocationItemPage = new Intent(ItemListPage.this, LocationItemPage.class);
+        Intent backToLocationItemPage = new Intent(ItemListPage.this, LandingPage.class);
         ItemListPage.this.startActivity(backToLocationItemPage);
     }
 
