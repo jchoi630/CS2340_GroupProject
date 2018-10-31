@@ -7,8 +7,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
 
+import java.io.Serializable;
+
 public class LocationItemPage extends AppCompatActivity {
     Location location;
+    int locationPos;
 
     TextView name;
     TextView latitude;
@@ -21,19 +24,21 @@ public class LocationItemPage extends AppCompatActivity {
     TextView phone;
     TextView website;
 
-    Button Item_button;
+    Button item_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_item_page);
 
-        location = (Location) getIntent().getSerializableExtra("location");
+        location = (Location) getIntent().getExtras().getSerializable("location");
+        locationPos = getIntent().getExtras().getInt("locationPos");
+
 
         bindFields();
         setFields(location);
 
-        Item_button.setOnClickListener(new View.OnClickListener() {
+        item_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 navigateToItemPage();
             }
@@ -53,7 +58,7 @@ public class LocationItemPage extends AppCompatActivity {
         phone = findViewById(R.id.phone);
         website = findViewById(R.id.website);
 
-        Item_button = findViewById(R.id.Item_button);
+        item_button = findViewById(R.id.item_button);
     }
 
 
@@ -73,8 +78,10 @@ public class LocationItemPage extends AppCompatActivity {
      * Go to the item page
      */
     public void navigateToItemPage() {
-        Intent ItemListPage = new Intent(LocationItemPage.this, ItemListPage.class);
-        LocationItemPage.this.startActivity(ItemListPage);
+        Intent itemListPage = new Intent(LocationItemPage.this, ItemListPage.class);
+        itemListPage.putExtra("location", (Serializable) location);
+        itemListPage.putExtra("locationPos", locationPos);
+        LocationItemPage.this.startActivity(itemListPage);
     }
 }
 

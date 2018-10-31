@@ -1,5 +1,6 @@
 package com.gaggle.givr;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +22,8 @@ public class AddItemPage extends AppCompatActivity {
     EditText weightField;
     EditText idField;
 
+    Location location;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,11 @@ public class AddItemPage extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         bindFields();
-        populateFields((Item) getIntent().getSerializableExtra("item"));
+
+        location = (Location) getIntent().getExtras().getSerializable("location");
+
+        final Item currItem = (Item) getIntent().getExtras().getSerializable("item");
+        populateFields(currItem);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -39,7 +46,7 @@ public class AddItemPage extends AppCompatActivity {
                 Snackbar.make(view, "TBD", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-                submit();
+                submit(currItem);
 
             }
         });
@@ -52,8 +59,15 @@ public class AddItemPage extends AppCompatActivity {
         idField = findViewById(R.id.id);
 
     }
-    public void submit() {
-        Item.itemList.add(new Item(
+    public void submit(Item item) {
+//        if (item.getName() != null) {
+//            item.setName(nameField.getText().toString());
+//            item.setQuantity(Integer.parseInt(quantityField.getText().toString()));
+//            item.setWeight(Integer.parseInt(weightField.getText().toString()));
+//            item.setId(Integer.parseInt(idField.getText().toString()));
+//        } else {
+//        }
+        location.items.add(new Item(
                 "test",
                 nameField.getText().toString(),
                 Integer.parseInt(quantityField.getText().toString()),
@@ -64,7 +78,8 @@ public class AddItemPage extends AppCompatActivity {
         System.out.println("TEST I'm a big kid now!");
     }
     public void populateFields(Item item){
-        if (item != null) {
+        System.out.println("test: " + item.getName());
+        if (item.getName() != null) {
             nameField.setText(item.getName());
             quantityField.setText(String.valueOf(item.getQuantity()));
             weightField.setText(String.valueOf(item.getWeight()));
@@ -72,8 +87,9 @@ public class AddItemPage extends AppCompatActivity {
         }
     }
     public void navigateBackToLocationItemPage() {
-        //action you want, to start new activity, params are the things you go from (this page to next page)
-        Intent backToItemListPage = new Intent(AddItemPage.this, ItemListPage.class);
-        AddItemPage.this.startActivity(backToItemListPage);
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("location", location);
+        setResult(Activity.RESULT_OK, returnIntent);
+        finish();
     }
 }

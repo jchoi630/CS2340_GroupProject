@@ -58,7 +58,7 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/Item_button"
+        android:id="@+id/item_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="See_Items" />

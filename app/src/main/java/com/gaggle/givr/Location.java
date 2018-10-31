@@ -1,8 +1,13 @@
 package com.gaggle.givr;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Location implements Serializable {
+    public static ArrayList<Location> locationList;
+
+    public ArrayList<Item> items;
+
     private String key;
     private String name;
     private String latitude;
@@ -27,6 +32,8 @@ public class Location implements Serializable {
         this.type = type;
         this.phone = phone;
         this.website = website;
+
+        this.items = new ArrayList<>();
     }
 
     public String getKey() {

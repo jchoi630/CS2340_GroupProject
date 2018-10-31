@@ -26,7 +26,7 @@ public class LocationListAdapter extends ArrayAdapter<Location> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Location loc = getItem(position);
+        Location loc = (Location) getItem(position);
         String addressString = loc.getStreetAddress() + ", "
                 + loc.getCity() + ", "
                 + loc.getState();
