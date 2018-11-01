@@ -34,7 +34,6 @@ public class LocationItemPage extends AppCompatActivity {
         location = (Location) getIntent().getExtras().getSerializable("location");
         locationPos = getIntent().getExtras().getInt("locationPos");
 
-
         bindFields();
         setFields(location);
 

@@ -11,7 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Spinner;
 
+import java.util.HashMap;
+
 public class LoginActivity extends AppCompatActivity {
+    TinyDB tinydb;
     User admin;
     LoginState state;
 
@@ -27,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        tinydb = new TinyDB(this);
 
         // Store elements as variables
         emailField = (EditText) findViewById(R.id.emailField);
@@ -40,9 +44,15 @@ public class LoginActivity extends AppCompatActivity {
         state = (LoginState) getIntent().getSerializableExtra("LoginState");
         setLoginState(state);
 
-        // Store default user
-        admin = new User("admin", "admin", "User");
-        User.userMap.put("admin", admin);
+        // Pull saved Users
+        HashMap<String, User> storedMap = tinydb.getHashMapUser("users");
+        if (storedMap == null) {
+            // Store default user
+            admin = new User("admin", "admin", "User");
+            User.userMap.put("admin", admin);
+        } else {
+            User.userMap = storedMap;
+        }
 
         // Set inputs to hide keyboard when use clicks away
         View.OnFocusChangeListener hideKeyboardListener = new View.OnFocusChangeListener() {
@@ -80,7 +90,8 @@ public class LoginActivity extends AppCompatActivity {
                     passwordField.getText().toString(),
                     userTypeSpinner.getSelectedItem().toString());
 
-            User.userMap.put(emailField.getText().toString(),tempUser);
+            User.userMap.put(emailField.getText().toString(), tempUser);
+            tinydb.putHashMapUser("users", User.userMap);
             navigateToLocationListPage();
         }
         if (state == LoginState.LOGIN) {

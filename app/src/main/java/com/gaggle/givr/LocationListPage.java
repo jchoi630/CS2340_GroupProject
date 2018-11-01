@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class LocationListPage extends AppCompatActivity {
     private ArrayList<Location> locations;
+    TinyDB tinydb;
 
     ListView locationListView;
     LocationListAdapter listAdapter;
@@ -30,11 +31,13 @@ public class LocationListPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_list_page);
+        tinydb = new TinyDB(this);
 
-//        locations = getLocationsFromPreference(this, "preferences", "locations", (Type) ArrayList.class);
-        if (locations == null) {
+        locations = tinydb.getListLocation("locations");
+        if (locations.size() == 0) {
             Location.locationList = importCSV();
             locations = Location.locationList;
+            tinydb.putListLocation("locations", Location.locationList);
         } else {
             Location.locationList = locations;
         }
@@ -51,27 +54,8 @@ public class LocationListPage extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        saveLocationsToSharedPreference(this, "preferences", "locations", Location.locationList);
-    }
-
-    public static void saveLocationsToSharedPreference(Context context, String preferenceFileName, String serializedObjectKey, Object object) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceFileName, 0);
-        SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
-        final Gson gson = new Gson();
-        String serializedObject = gson.toJson(object);
-        sharedPreferencesEditor.putString(serializedObjectKey, serializedObject);
-        sharedPreferencesEditor.apply();
-    }
-
-    public static <GenericClass> GenericClass getLocationsFromPreference(Context context, String preferenceFileName, String preferenceKey, Type classType) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceFileName, 0);
-        if (sharedPreferences.contains(preferenceKey)) {
-            final Gson gson = new Gson();
-            return gson.fromJson(sharedPreferences.getString(preferenceKey, ""), classType);
-        }
-        return null;
+    protected void onResume() {
+        super.onResume();
     }
 
     public void navigateToLocationItem(int pos) {

@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ItemListPage extends AppCompatActivity {
+    TinyDB tinydb;
 
     ListView itemListView;
     ItemListAdapter listAdapter;
@@ -22,6 +23,7 @@ public class ItemListPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list_page);
+        tinydb = new TinyDB(this);
 
         location = (Location) getIntent().getExtras().getSerializable("location");
         locationPos = getIntent().getExtras().getInt("locationPos");
@@ -48,6 +50,7 @@ public class ItemListPage extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         location = (Location) data.getSerializableExtra("location");
         Location.locationList.set(locationPos, location);
+        tinydb.putListLocation("locations", Location.locationList);
         listAdapter.clear();
         listAdapter.addAll(location.items);
     }
