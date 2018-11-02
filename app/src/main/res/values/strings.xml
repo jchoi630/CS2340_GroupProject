@@ -18,4 +18,5 @@
     <string name="title_activity_item_list_page">ItemListPage</string>
     <string name="title_activity_new_item_page">newItemPage</string>
     <string name="title_activity_add_item_page">AddItemPage</string>
+    <string name="title_activity_item_search">ItemSearchActivity</string>
 </resources>

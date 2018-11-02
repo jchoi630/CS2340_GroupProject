@@ -72,6 +72,11 @@ public class LocationListPage extends AppCompatActivity {
         LocationListPage.this.startActivity(backToLandingPage);
     }
 
+    public void navigateToSearchPage(View v) {
+        Intent searchPage = new Intent(LocationListPage.this, ItemSearchActivity.class);
+        LocationListPage.this.startActivity(searchPage);
+    }
+
     private ArrayList<Location> importCSV() {
         ArrayList<Location> locationList = new ArrayList<>();
         InputStream inputStream = getResources().openRawResource(R.raw.location_data);

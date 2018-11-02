@@ -73,14 +73,18 @@ public class LocationItemPage extends AppCompatActivity {
         phone.setText(location.getPhone());
         website.setText(location.getWebsite());
     }
-    /*
-     * Go to the item page
-     */
+
     public void navigateToItemPage() {
         Intent itemListPage = new Intent(LocationItemPage.this, ItemListPage.class);
         itemListPage.putExtra("location", (Serializable) location);
         itemListPage.putExtra("locationPos", locationPos);
         LocationItemPage.this.startActivity(itemListPage);
+    }
+
+    public void navigateToSearch(View v) {
+        Intent searchPage = new Intent(LocationItemPage.this, ItemSearchActivity.class);
+        searchPage.putExtra("location", location);
+        LocationItemPage.this.startActivity(searchPage);
     }
 }
 

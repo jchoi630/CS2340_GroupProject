@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -60,6 +61,7 @@ public class AddItemPage extends AppCompatActivity {
 
     }
     public void submit(Item item) {
+        // TODO: Set to edit item isnstead of adding a new one.
 //        if (item.getName() != null) {
 //            item.setName(nameField.getText().toString());
 //            item.setQuantity(Integer.parseInt(quantityField.getText().toString()));
@@ -91,5 +93,14 @@ public class AddItemPage extends AppCompatActivity {
         returnIntent.putExtra("location", location);
         setResult(Activity.RESULT_OK, returnIntent);
         finish();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // Handle back button press for startActivityForResult
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
