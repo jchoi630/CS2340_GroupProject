@@ -38,20 +38,6 @@ public class AddItemPage extends AppCompatActivity {
 
         final Item currItem = (Item) getIntent().getExtras().getSerializable("item");
         populateFields(currItem);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "TBD", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-                submit(currItem);
-
-            }
-        });
-
     }
     private void bindFields() {
         nameField = findViewById(R.id.name);
@@ -60,7 +46,7 @@ public class AddItemPage extends AppCompatActivity {
         idField = findViewById(R.id.id);
 
     }
-    public void submit(Item item) {
+    public void submit(View v) {
         // TODO: Set to edit item isnstead of adding a new one.
 //        if (item.getName() != null) {
 //            item.setName(nameField.getText().toString());

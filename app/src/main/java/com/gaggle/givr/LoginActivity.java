@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Spinner;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     TinyDB tinydb;
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         setLoginState(state);
 
         // Pull saved Users
-        HashMap<String, User> storedMap = tinydb.getHashMapUser("users");
+        Map<String, User> storedMap = tinydb.getHashMapUser("users");
         if (storedMap == null) {
             // Store default user
             admin = new User("admin", "admin", "User");

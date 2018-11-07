@@ -37,8 +37,6 @@ public class ItemPage extends AppCompatActivity {
         quantity.setText(item.getQuantity());
         weight.setText(item.getWeight());
         id.setText(item.getId());
-
-
     }
 
 

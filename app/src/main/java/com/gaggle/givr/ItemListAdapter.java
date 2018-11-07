@@ -8,16 +8,17 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ItemListAdapter extends ArrayAdapter<Item> {
-    private ArrayList<Item> list;
+    private List<Item> list;
     Context mContext;
 
     private static class ViewHolder {
         TextView name;
     }
 
-    public ItemListAdapter(ArrayList<Item> list, Context context) {
+    public ItemListAdapter(List<Item> list, Context context) {
         super(context, R.layout.item_layout, list);
         this.list = list;
         this.mContext = context;

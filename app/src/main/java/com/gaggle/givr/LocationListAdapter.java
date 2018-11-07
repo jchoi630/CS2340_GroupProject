@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class LocationListAdapter extends ArrayAdapter<Location> {
-    private ArrayList<Location> list;
+    private List<Location> list;
     Context mContext;
 
     private static class ViewHolder {
@@ -18,7 +18,7 @@ public class LocationListAdapter extends ArrayAdapter<Location> {
         TextView address;
     }
 
-    public LocationListAdapter(ArrayList<Location> list, Context context) {
+    public LocationListAdapter(List<Location> list, Context context) {
         super(context, R.layout.location_item, list);
         this.list = list;
         this.mContext = context;
@@ -26,7 +26,7 @@ public class LocationListAdapter extends ArrayAdapter<Location> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Location loc = (Location) getItem(position);
+        Location loc = getItem(position);
         String addressString = loc.getStreetAddress() + ", "
                 + loc.getCity() + ", "
                 + loc.getState();
