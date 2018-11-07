@@ -2,4 +2,7 @@
 <resources>
     <item name="userPassIncorrect" type="id" />
     <item name="logOutButton" type="id" />
+    <item name="weight" type="id" />
+    <item name="quantity" type="id" />
+    <item name="id" type="id" />
 </resources>

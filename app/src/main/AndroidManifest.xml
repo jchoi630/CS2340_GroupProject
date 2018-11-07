@@ -24,7 +24,19 @@
         <activity
             android:name=".LocationListPage"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
-        <activity android:name=".LocationItemPage"></activity>
+        <activity android:name=".LocationItemPage" />
+        <activity android:name=".ItemPage" />
+        <activity
+            android:name=".ItemListPage"
+            android:label="@string/title_activity_item_list_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddItemPage"
+            android:label="@string/title_activity_add_item_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ItemSearchActivity"
+            android:label="@string/title_activity_item_search"></activity>
     </application>
 
 </manifest>

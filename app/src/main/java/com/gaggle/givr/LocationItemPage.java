@@ -1,11 +1,17 @@
 package com.gaggle.givr;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Button;
+
+import java.io.Serializable;
 
 public class LocationItemPage extends AppCompatActivity {
     Location location;
+    int locationPos;
 
     TextView name;
     TextView latitude;
@@ -18,16 +24,26 @@ public class LocationItemPage extends AppCompatActivity {
     TextView phone;
     TextView website;
 
+    Button item_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_item_page);
 
-        location = (Location) getIntent().getSerializableExtra("location");
+        location = (Location) getIntent().getExtras().getSerializable("location");
+        locationPos = getIntent().getExtras().getInt("locationPos");
 
         bindFields();
         setFields(location);
+
+        item_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                navigateToItemPage();
+            }
+        });
     }
+
 
     private void bindFields() {
         name = findViewById(R.id.name);
@@ -40,7 +56,10 @@ public class LocationItemPage extends AppCompatActivity {
         type = findViewById(R.id.type);
         phone = findViewById(R.id.phone);
         website = findViewById(R.id.website);
+
+        item_button = findViewById(R.id.item_button);
     }
+
 
     private void setFields(Location location) {
         name.setText(location.getName());
@@ -54,4 +73,18 @@ public class LocationItemPage extends AppCompatActivity {
         phone.setText(location.getPhone());
         website.setText(location.getWebsite());
     }
+
+    public void navigateToItemPage() {
+        Intent itemListPage = new Intent(LocationItemPage.this, ItemListPage.class);
+        itemListPage.putExtra("location", (Serializable) location);
+        itemListPage.putExtra("locationPos", locationPos);
+        LocationItemPage.this.startActivity(itemListPage);
+    }
+
+    public void navigateToSearch(View v) {
+        Intent searchPage = new Intent(LocationItemPage.this, ItemSearchActivity.class);
+        searchPage.putExtra("location", location);
+        LocationItemPage.this.startActivity(searchPage);
+    }
 }
+
