@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 public class LocationListPage extends AppCompatActivity {
     private ArrayList<Location> locations;
     TinyDB tinydb;
+    Button map_button;
 
     ListView locationListView;
     LocationListAdapter listAdapter;
@@ -51,6 +53,16 @@ public class LocationListPage extends AppCompatActivity {
                 navigateToLocationItem(pos);
             }
         });
+
+//        map_button.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                navigateToMapPage(v);
+//            }
+//        });
+    }
+
+    private void bindFields() {
+        map_button = findViewById(R.id.map_button);
     }
 
     @Override
@@ -70,6 +82,13 @@ public class LocationListPage extends AppCompatActivity {
         //action you want, to start new activity, params are the things you go from (this page to next page)
         Intent backToLandingPage = new Intent(LocationListPage.this, LandingPage.class);
         LocationListPage.this.startActivity(backToLandingPage);
+    }
+
+    public void navigateToMapPage(View v) {
+        //action you want, to start new activity, params are the things you go from (this page to next page)
+        Intent toMapPage = new Intent(LocationListPage.this, MapsActivity.class);
+        toMapPage.putExtra("locations", locations);
+        LocationListPage.this.startActivity(toMapPage);
     }
 
     public void navigateToSearchPage(View v) {
