@@ -37,10 +37,12 @@
 
     <Button
         android:id="@+id/map_button"
-        android:layout_width="match_parent"
+        android:layout_width="148dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/locationListView"
+        android:layout_toEndOf="@+id/search"
         android:onClick="navigateToMapPage"
-        android:text="map"/>
+        android:text="map" />
 
 
 </RelativeLayout>

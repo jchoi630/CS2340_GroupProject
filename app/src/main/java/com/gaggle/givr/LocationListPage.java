@@ -54,6 +54,7 @@ public class LocationListPage extends AppCompatActivity {
                 navigateToLocationItem(pos);
             }
         });
+
         map_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 navigateToMapPage();
@@ -86,8 +87,8 @@ public class LocationListPage extends AppCompatActivity {
 
     public void navigateToMapPage() {
         //action you want, to start new activity, params are the things you go from (this page to next page)
-        Intent backToLandingPage = new Intent(LocationListPage.this, LandingPage.class);
-        LocationListPage.this.startActivity(backToLandingPage);
+        Intent toMapPage = new Intent(LocationListPage.this, MapsActivity.class);
+        LocationListPage.this.startActivity(toMapPage);
     }
 
     public void navigateToSearchPage(View v) {
