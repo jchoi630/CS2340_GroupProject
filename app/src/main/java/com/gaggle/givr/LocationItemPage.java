@@ -26,6 +26,7 @@ public class LocationItemPage extends AppCompatActivity {
 
     Button item_button;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +43,7 @@ public class LocationItemPage extends AppCompatActivity {
                 navigateToItemPage();
             }
         });
+
     }
 
 
@@ -58,6 +60,7 @@ public class LocationItemPage extends AppCompatActivity {
         website = findViewById(R.id.website);
 
         item_button = findViewById(R.id.item_button);
+
     }
 
 
@@ -86,5 +89,6 @@ public class LocationItemPage extends AppCompatActivity {
         searchPage.putExtra("location", location);
         LocationItemPage.this.startActivity(searchPage);
     }
+
 }
 

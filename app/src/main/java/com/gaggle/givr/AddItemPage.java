@@ -61,7 +61,7 @@ public class AddItemPage extends AppCompatActivity {
 
     }
     public void submit(Item item) {
-        // TODO: Set to edit item isnstead of adding a new one.
+        // TODO: Set to edit item instead of adding a new one.
 //        if (item.getName() != null) {
 //            item.setName(nameField.getText().toString());
 //            item.setQuantity(Integer.parseInt(quantityField.getText().toString()));
