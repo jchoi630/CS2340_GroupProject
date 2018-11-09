@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.io.Serializable;
 import java.util.ArrayList;
 /**
-* the class where we are adding items
+* the class where we are adding and editing items
 */
 public class AddItemPage extends AppCompatActivity {
 
