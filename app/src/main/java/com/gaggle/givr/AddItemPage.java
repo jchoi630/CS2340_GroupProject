@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -77,7 +78,8 @@ public class AddItemPage extends AppCompatActivity {
                 Integer.parseInt(idField.getText().toString())
         ));
         navigateBackToLocationItemPage();
-        System.out.println("TEST I'm a big kid now!");
+        Log.d("submit","TEST I'm a big kid now!");
+
     }
     public void populateFields(Item item){
         System.out.println("test: " + item.getName());
