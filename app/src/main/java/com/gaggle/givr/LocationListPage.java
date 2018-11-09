@@ -21,6 +21,9 @@ import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+/**
+* the list of all locations
+*/
 public class LocationListPage extends AppCompatActivity {
     private ArrayList<Location> locations;
     TinyDB tinydb;
@@ -70,6 +73,10 @@ public class LocationListPage extends AppCompatActivity {
         super.onResume();
     }
 
+    /**
+    * @param pos the number in the array of the location we are checking
+    * an intent to go from current page to the more specifics of a certain location
+    */
     public void navigateToLocationItem(int pos) {
         Location location = locations.get(pos);
         Intent toLocationItem = new Intent(LocationListPage.this, LocationItemPage.class);
@@ -77,20 +84,29 @@ public class LocationListPage extends AppCompatActivity {
         toLocationItem.putExtra("locationPos", pos);
         LocationListPage.this.startActivity(toLocationItem);
     }
-
+    /**
+     * @param v the page we wil be looking at next
+     * an intent to go from current page back to the original landing page
+     */
     public void navigateBackToLandingPage(View v) {
         //action you want, to start new activity, params are the things you go from (this page to next page)
         Intent backToLandingPage = new Intent(LocationListPage.this, LandingPage.class);
         LocationListPage.this.startActivity(backToLandingPage);
     }
-
+    /**
+     * @param v the page we wil be looking at next
+     * an intent to go from current page to the map page with all the places!
+     */
     public void navigateToMapPage(View v) {
         //action you want, to start new activity, params are the things you go from (this page to next page)
         Intent toMapPage = new Intent(LocationListPage.this, MapsActivity.class);
         toMapPage.putExtra("locations", locations);
         LocationListPage.this.startActivity(toMapPage);
     }
-
+    /**
+     * @param v the page we wil be looking at next
+     * an intent to go from current page to the search page
+     */
     public void navigateToSearchPage(View v) {
         Intent searchPage = new Intent(LocationListPage.this, ItemSearchActivity.class);
         LocationListPage.this.startActivity(searchPage);

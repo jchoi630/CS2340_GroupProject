@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * The adapter for location
+ */
 public class LocationListAdapter extends ArrayAdapter<Location> {
     private ArrayList<Location> list;
     Context mContext;
@@ -18,6 +21,11 @@ public class LocationListAdapter extends ArrayAdapter<Location> {
         TextView address;
     }
 
+    /**
+     * the constructor for location
+     * @param list the arraylist of Locations
+     * @param context the context we're using
+     */
     public LocationListAdapter(ArrayList<Location> list, Context context) {
         super(context, R.layout.location_item, list);
         this.list = list;

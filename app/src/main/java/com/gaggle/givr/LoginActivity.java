@@ -13,6 +13,9 @@ import android.widget.Spinner;
 
 import java.util.HashMap;
 
+/**
+ * what happens when you login!
+ */
 public class LoginActivity extends AppCompatActivity {
     TinyDB tinydb;
     User admin;
@@ -79,10 +82,18 @@ public class LoginActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
     }
 
+    /**
+     * What will happen if you forget your password
+     * @param v the page to view
+     */
     public void forgotPassword(View v) {
         setLoginState(LoginState.FORGOT_PASSWORD);
     }
 
+    /**
+     * What happens when you click submit!
+     * @param v the next thing to go to
+     */
     public void submit(View v) {
         User tempUser;
         if (state == LoginState.SIGNUP) {
@@ -111,6 +122,9 @@ public class LoginActivity extends AppCompatActivity {
         LoginActivity.this.startActivity(locationListPageIntent);
     }
 
+    /**
+     * The enum for login state
+     */
     public enum LoginState {
         LOGIN,
         SIGNUP,

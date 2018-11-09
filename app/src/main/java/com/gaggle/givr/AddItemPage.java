@@ -14,7 +14,9 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/**
+* the class where we are adding items
+*/
 public class AddItemPage extends AppCompatActivity {
 
     TextView locationField;
@@ -60,6 +62,10 @@ public class AddItemPage extends AppCompatActivity {
         idField = findViewById(R.id.id);
 
     }
+    /**
+    * @param item the item from the Item object
+    * adds an item into the Item object
+    */
     public void submit(Item item) {
         // TODO: Set to edit item isnstead of adding a new one.
 //        if (item.getName() != null) {
@@ -79,6 +85,10 @@ public class AddItemPage extends AppCompatActivity {
         navigateBackToLocationItemPage();
         System.out.println("TEST I'm a big kid now!");
     }
+    /**
+    * @param item the item we will populate the edit field with
+    * use this to do edits to the item
+    */
     public void populateFields(Item item){
         System.out.println("test: " + item.getName());
         if (item.getName() != null) {
@@ -88,6 +98,9 @@ public class AddItemPage extends AppCompatActivity {
             idField.setText(String.valueOf(item.getId()));
         }
     }
+    /**
+    * an intent to go from current page to go back to the location specific page.
+    */
     public void navigateBackToLocationItemPage() {
         Intent returnIntent = new Intent();
         returnIntent.putExtra("location", location);

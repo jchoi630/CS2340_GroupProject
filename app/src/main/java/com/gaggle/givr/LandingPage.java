@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+/**
+ * the original landing page for the app
+ */
 public class LandingPage extends AppCompatActivity {
 
     @Override
@@ -13,10 +16,18 @@ public class LandingPage extends AppCompatActivity {
         setContentView(R.layout.activity_landing_page);
     }
 
+    /**
+     * how to signup
+     * @param v the page to view
+     */
     public void signUp(View v) {
         navigateToLoginActivity(LoginActivity.LoginState.SIGNUP);
     }
 
+    /**
+     * the login page
+     * @param v the page to view
+     */
     public void logIn(View v) {
         navigateToLoginActivity(LoginActivity.LoginState.LOGIN);
     }

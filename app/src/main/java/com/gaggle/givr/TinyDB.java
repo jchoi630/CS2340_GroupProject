@@ -42,7 +42,9 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
-
+/*
+* database for our app
+*/
 
 public class TinyDB {
 
@@ -50,6 +52,10 @@ public class TinyDB {
     private String DEFAULT_APP_IMAGEDATA_DIRECTORY;
     private String lastImagePath = "";
 
+    /**
+    * @param appContext the context of the things we are looking at
+     * the constructor for out Db
+    */
     public TinyDB(Context appContext) {
         preferences = PreferenceManager.getDefaultSharedPreferences(appContext);
     }
@@ -332,7 +338,12 @@ public class TinyDB {
         return newList;
     }
 
-
+    /**
+     * We are making the arraylist of abjects
+     * @param key the key we check with
+     * @param mClass the arraylist of Class
+     * @return the object
+     */
     public ArrayList<Object> getListObject(String key, Class<?> mClass){
     	Gson gson = new Gson();
 
@@ -346,6 +357,11 @@ public class TinyDB {
     	return objects;
     }
 
+    /**
+     * arraylist of locations
+     * @param key we are going to check with
+     * @return the objects
+     */
     public ArrayList<Location> getListLocation(String key){
         Gson gson = new Gson();
         Class<?> mClass = Location.class;
@@ -360,6 +376,11 @@ public class TinyDB {
         return objects;
     }
 
+    /**
+     *  a hashmap of the users
+     * @param key what we are going to be using to check with
+     * @return the gson of a json with the string and type
+     */
     public HashMap<String, User> getHashMapUser(String key) {
         Gson gson = new Gson();
         String storedMapString = preferences.getString(key, "failedToGrab");
@@ -370,7 +391,13 @@ public class TinyDB {
         return gson.fromJson(storedMapString, type);
     }
 
-
+    /**
+     * generic type we are using
+     * @param key what we are checking with
+     * @param classOfT the class we are using T with
+     * @param <T> type
+     * @return the T value
+     */
     public <T> T getObject(String key, Class<T> classOfT){
 
         String json = getString(key);

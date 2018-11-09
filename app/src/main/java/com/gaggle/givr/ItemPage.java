@@ -8,6 +8,9 @@ import android.widget.TextView;
 import android.os.Bundle;
 
 import junit.framework.Test;
+/**
+* Itempage where we view the bindings and setting of fields to make the items.
+*/
 
 public class ItemPage extends AppCompatActivity {
     Item item;

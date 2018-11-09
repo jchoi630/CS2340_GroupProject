@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * the adapter to check the item and do magical things with the items
+ */
 public class ItemListAdapter extends ArrayAdapter<Item> {
     private ArrayList<Item> list;
     Context mContext;
@@ -17,6 +20,11 @@ public class ItemListAdapter extends ArrayAdapter<Item> {
         TextView name;
     }
 
+    /**
+     * simple constructor
+     * @param list the arraylist of Items
+     * @param context the context we are using for this Item object
+     */
     public ItemListAdapter(ArrayList<Item> list, Context context) {
         super(context, R.layout.item_layout, list);
         this.list = list;
