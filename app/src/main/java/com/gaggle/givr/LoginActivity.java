@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /// Helper methods ///
-    private int getSubmitButtonText(LoginState state) {
+    protected int getSubmitButtonText(LoginState state) {
         switch (state) {
             case SIGNUP:
                 return R.string.signup_button;
