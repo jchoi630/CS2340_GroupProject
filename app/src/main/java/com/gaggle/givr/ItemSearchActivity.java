@@ -48,7 +48,7 @@ public class ItemSearchActivity extends Activity {
         listAdapter.addAll(itemList);
     }
 
-    public ArrayList<Item> searchItemList(String pattern, ArrayList<Item> items) {
+    public static ArrayList<Item> searchItemList(String pattern, ArrayList<Item> items) {
         ArrayList<Item> constructionList = new ArrayList<>();
         for (Item item : items) {
             if (item.getName().toLowerCase().contains(pattern.toLowerCase())) {
@@ -58,7 +58,7 @@ public class ItemSearchActivity extends Activity {
         return constructionList;
     }
 
-    public ArrayList<Item> searchLocationList(String pattern, ArrayList<Location> locations) {
+    public static ArrayList<Item> searchLocationList(String pattern, ArrayList<Location> locations) {
         ArrayList<Item> constructionList = new ArrayList<>();
         for (Location loc : locations) {
             constructionList.addAll(searchItemList(pattern, loc.items));
