@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.os.Bundle;
 
-import junit.framework.Test;
+
+
+import static com.gaggle.givr.R.layout.activity_item_page;
 
 public class ItemPage extends AppCompatActivity {
     Item item;
@@ -19,7 +21,7 @@ public class ItemPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_page);
+        setContentView(activity_item_page);
         item = (Item) getIntent().getSerializableExtra("item");
 
         bindFields();
