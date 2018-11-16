@@ -7,8 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The adapter for location
+ */
 public class LocationListAdapter extends ArrayAdapter<Location> {
     private List<Location> list;
     Context mContext;
@@ -18,6 +22,11 @@ public class LocationListAdapter extends ArrayAdapter<Location> {
         TextView address;
     }
 
+    /**
+     * the constructor for location
+     * @param list the list of Locations
+     * @param context the context we're using
+     */
     public LocationListAdapter(List<Location> list, Context context) {
         super(context, R.layout.location_item, list);
         this.list = list;

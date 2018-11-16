@@ -8,6 +8,9 @@ import android.widget.TextView;
 import android.widget.Button;
 
 import java.io.Serializable;
+/**
+* The specifics of a location.
+*/
 
 public class LocationItemPage extends AppCompatActivity {
     Location location;
@@ -73,14 +76,19 @@ public class LocationItemPage extends AppCompatActivity {
         phone.setText(location.getPhone());
         website.setText(location.getWebsite());
     }
-
+/**
+* an intent to go from this page to the item page
+*/
     public void navigateToItemPage() {
         Intent itemListPage = new Intent(LocationItemPage.this, ItemListPage.class);
         itemListPage.putExtra("location", (Serializable) location);
         itemListPage.putExtra("locationPos", locationPos);
         LocationItemPage.this.startActivity(itemListPage);
     }
-
+    /**
+     * @param v the view that shows us.
+     * an intent to go from this page to the item search page
+     */
     public void navigateToSearch(View v) {
         Intent searchPage = new Intent(LocationItemPage.this, ItemSearchActivity.class);
         searchPage.putExtra("location", location);
