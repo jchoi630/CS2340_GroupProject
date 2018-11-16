@@ -10,7 +10,6 @@ import android.widget.ListView;
 import android.widget.Button;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class ItemListPage extends AppCompatActivity {
     TinyDB tinydb;

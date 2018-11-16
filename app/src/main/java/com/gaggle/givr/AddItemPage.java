@@ -13,8 +13,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 
 public class AddItemPage extends AppCompatActivity {
 
