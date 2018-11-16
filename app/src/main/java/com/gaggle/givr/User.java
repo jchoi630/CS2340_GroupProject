@@ -3,9 +3,9 @@ package com.gaggle.givr;
 import java.util.HashMap;
 import java.util.Map;
 
-/*
-* the user class where we define what a user needs and has.
-*/
+/**
+ * The user class with  3 types of data
+ */
 public class User {
     String email;
     String password;
@@ -13,7 +13,7 @@ public class User {
 
     public static Map<String, User> userMap = new HashMap<>();
 
-    /*
+    /**
     * @param email the email
     * @param password the password
     * @param type the type of user (admin, normal)

@@ -42,7 +42,7 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
-/*
+/**
 * database for our app
 */
 
@@ -542,6 +542,11 @@ public class TinyDB {
     	putString(key, gson.toJson(obj));
     }
 
+    /**
+     * puts the list of obkects
+     * @param key the key we are checking with
+     * @param objArray the array of objects
+     */
     public void putListObject(String key, ArrayList<Object> objArray){
     	checkForNullKey(key);
     	Gson gson = new Gson();
@@ -552,6 +557,11 @@ public class TinyDB {
     	putListString(key, objStrings);
     }
 
+    /**
+     * The locations of objects
+     * @param key the key we are checking with
+     * @param objArray the arraylist
+     */
     public void putListLocation(String key, ArrayList<Location> objArray){
         checkForNullKey(key);
         Gson gson = new Gson();
@@ -562,6 +572,11 @@ public class TinyDB {
         putListString(key, objStrings);
     }
 
+    /**
+     * A hashmap for what we want
+     * @param key the key we are using
+     * @param userMap A map of the string and the user info
+     */
     public void putHashMapUser(String key, Map<String, User> userMap) {
         Gson gson = new Gson();
         String hashMapString = gson.toJson(userMap);
