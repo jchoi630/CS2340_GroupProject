@@ -1,7 +1,12 @@
 package com.gaggle.givr;
 
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Spinner;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -21,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     TinyDB tinydb;
     User admin;
     LoginState state;
+    NotificationManager notifManager;
 
     // Element References
     EditText emailField;
@@ -35,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         tinydb = new TinyDB(this);
+        notifManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 
         // Store elements as variables
         emailField = (EditText) findViewById(R.id.emailField);
@@ -105,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
             User.userMap.put(emailField.getText().toString(), tempUser);
             tinydb.putHashMapUser("users", User.userMap);
             navigateToLocationListPage();
+            notifySignUp();
         }
         if (state == LoginState.LOGIN) {
             tempUser = User.userMap.get(emailField.getText().toString());
@@ -116,6 +123,29 @@ public class LoginActivity extends AppCompatActivity {
                 navigateToLocationListPage();
             }
         }
+    }
+
+    private void notifySignUp() {
+        String CHANNEL_ID = "my_channel_01";
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            CharSequence name = "my_channel";
+            String Description = "This is my channel";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
+            mChannel.setDescription(Description);
+            mChannel.enableLights(true);
+            mChannel.setLightColor(Color.GREEN);
+            mChannel.enableVibration(true);
+            mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            notifManager.createNotificationChannel(mChannel);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("Givr")
+                .setContentText("Congratulations! You successfully signed up!");
+
+        notifManager.notify(0, builder.build());
     }
 
     private void navigateToLocationListPage() {
