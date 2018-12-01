@@ -8,6 +8,9 @@ import android.widget.TextView;
 import android.os.Bundle;
 
 import junit.framework.Test;
+/**
+* Itempage where we view the bindings and setting of fields to make the items.
+*/
 
 public class ItemPage extends AppCompatActivity {
     Item item;
@@ -37,8 +40,6 @@ public class ItemPage extends AppCompatActivity {
         quantity.setText(item.getQuantity());
         weight.setText(item.getWeight());
         id.setText(item.getId());
-
-
     }
 
 

@@ -8,6 +8,9 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+/**
+ * where we search for items
+ */
 public class ItemSearchActivity extends Activity {
     Location location;
     boolean isLocationSpecific;
@@ -37,6 +40,10 @@ public class ItemSearchActivity extends Activity {
         itemListView.setAdapter(listAdapter);
     }
 
+    /**
+     * how we begin the search process
+     * @param v the page we are viewing
+     */
     public void initiateSearch(View v) {
         String pattern = searchField.getText().toString();
         if (isLocationSpecific) {
@@ -48,6 +55,12 @@ public class ItemSearchActivity extends Activity {
         listAdapter.addAll(itemList);
     }
 
+    /**
+     * an arraylist of items
+     * @param pattern the chars we enter
+     * @param items the arraylist fo items we are checking within
+     * @return the list of items that match
+     */
     public ArrayList<Item> searchItemList(String pattern, ArrayList<Item> items) {
         ArrayList<Item> constructionList = new ArrayList<>();
         for (Item item : items) {
@@ -58,6 +71,12 @@ public class ItemSearchActivity extends Activity {
         return constructionList;
     }
 
+    /**
+     * how we check to see what is in which location
+     * @param pattern the chars we enter
+     * @param locations where this is coming from
+     * @return the list of items in that locations that match
+     */
     public ArrayList<Item> searchLocationList(String pattern, ArrayList<Location> locations) {
         ArrayList<Item> constructionList = new ArrayList<>();
         for (Location loc : locations) {

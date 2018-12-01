@@ -12,7 +12,11 @@ import android.widget.TextView;
 import android.widget.Spinner;
 
 import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * what happens when you login!
+ */
 public class LoginActivity extends AppCompatActivity {
     TinyDB tinydb;
     User admin;
@@ -45,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         setLoginState(state);
 
         // Pull saved Users
-        HashMap<String, User> storedMap = tinydb.getHashMapUser("users");
+        Map<String, User> storedMap = tinydb.getHashMapUser("users");
         if (storedMap == null) {
             // Store default user
             admin = new User("admin", "admin", "User");
@@ -79,10 +83,18 @@ public class LoginActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
     }
 
+    /**
+     * What will happen if you forget your password
+     * @param v the page to view
+     */
     public void forgotPassword(View v) {
         setLoginState(LoginState.FORGOT_PASSWORD);
     }
 
+    /**
+     * What happens when you click submit!
+     * @param v the next thing to go to
+     */
     public void submit(View v) {
         User tempUser;
         if (state == LoginState.SIGNUP) {
@@ -111,6 +123,9 @@ public class LoginActivity extends AppCompatActivity {
         LoginActivity.this.startActivity(locationListPageIntent);
     }
 
+    /**
+     * The enum for login state
+     */
     public enum LoginState {
         LOGIN,
         SIGNUP,
@@ -124,8 +139,9 @@ public class LoginActivity extends AppCompatActivity {
                 return R.string.signup_button;
             case FORGOT_PASSWORD:
                 return R.string.reset_button;
-            default:
             case LOGIN:
+                return R.string.login_button;
+            default:
                 return R.string.login_button;
         }
     }

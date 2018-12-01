@@ -42,7 +42,9 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
-
+/**
+* database for our app
+*/
 
 public class TinyDB {
 
@@ -50,6 +52,10 @@ public class TinyDB {
     private String DEFAULT_APP_IMAGEDATA_DIRECTORY;
     private String lastImagePath = "";
 
+    /**
+    * @param appContext the context of the things we are looking at
+     * the constructor for out Db
+    */
     public TinyDB(Context appContext) {
         preferences = PreferenceManager.getDefaultSharedPreferences(appContext);
     }
@@ -97,7 +103,7 @@ public class TinyDB {
         this.DEFAULT_APP_IMAGEDATA_DIRECTORY = theFolder;
         String mFullPath = setupFullPath(theImageName);
 
-        if (!mFullPath.equals("")) {
+        if (!"".equals(mFullPath)) {
             lastImagePath = mFullPath;
             saveBitmap(mFullPath, theBitmap);
         }
@@ -192,7 +198,6 @@ public class TinyDB {
     /**
      * Get int value from SharedPreferences at 'key'. If key not found, return 'defaultValue'
      * @param key SharedPreferences key
-     * @param defaultValue int value returned if key was not found
      * @return int value at 'key' or 'defaultValue' if key not found
      */
     public int getInt(String key) {
@@ -228,7 +233,6 @@ public class TinyDB {
     /**
      * Get float value from SharedPreferences at 'key'. If key not found, return 'defaultValue'
      * @param key SharedPreferences key
-     * @param defaultValue float value returned if key was not found
      * @return float value at 'key' or 'defaultValue' if key not found
      */
     public float getFloat(String key) {
@@ -305,7 +309,6 @@ public class TinyDB {
     /**
      * Get boolean value from SharedPreferences at 'key'. If key not found, return 'defaultValue'
      * @param key SharedPreferences key
-     * @param defaultValue boolean value returned if key was not found
      * @return boolean value at 'key' or 'defaultValue' if key not found
      */
     public boolean getBoolean(String key) {
@@ -322,7 +325,7 @@ public class TinyDB {
         ArrayList<Boolean> newList = new ArrayList<Boolean>();
 
         for (String item : myList) {
-            if (item.equals("true")) {
+            if ("true".equals(item)) {
                 newList.add(true);
             } else {
                 newList.add(false);
@@ -332,7 +335,12 @@ public class TinyDB {
         return newList;
     }
 
-
+    /**
+     * We are making the arraylist of abjects
+     * @param key the key we check with
+     * @param mClass the arraylist of Class
+     * @return the object
+     */
     public ArrayList<Object> getListObject(String key, Class<?> mClass){
     	Gson gson = new Gson();
 
@@ -346,6 +354,11 @@ public class TinyDB {
     	return objects;
     }
 
+    /**
+     * arraylist of locations
+     * @param key we are going to check with
+     * @return the objects
+     */
     public ArrayList<Location> getListLocation(String key){
         Gson gson = new Gson();
         Class<?> mClass = Location.class;
@@ -360,17 +373,28 @@ public class TinyDB {
         return objects;
     }
 
+    /**
+     *  a hashmap of the users
+     * @param key what we are going to be using to check with
+     * @return the gson of a json with the string and type
+     */
     public HashMap<String, User> getHashMapUser(String key) {
         Gson gson = new Gson();
         String storedMapString = preferences.getString(key, "failedToGrab");
-        if (storedMapString.equals("failedToGrab")) {
+        if ("failedToGrab".equals(storedMapString)) {
             return null;
         }
         Type type = new TypeToken<HashMap<String, User>>(){}.getType();
         return gson.fromJson(storedMapString, type);
     }
 
-
+    /**
+     * generic type we are using
+     * @param key what we are checking with
+     * @param classOfT the class we are using T with
+     * @param <T> type
+     * @return the T value
+     */
     public <T> T getObject(String key, Class<T> classOfT){
 
         String json = getString(key);
@@ -518,6 +542,11 @@ public class TinyDB {
     	putString(key, gson.toJson(obj));
     }
 
+    /**
+     * puts the list of obkects
+     * @param key the key we are checking with
+     * @param objArray the array of objects
+     */
     public void putListObject(String key, ArrayList<Object> objArray){
     	checkForNullKey(key);
     	Gson gson = new Gson();
@@ -528,6 +557,11 @@ public class TinyDB {
     	putListString(key, objStrings);
     }
 
+    /**
+     * The locations of objects
+     * @param key the key we are checking with
+     * @param objArray the arraylist
+     */
     public void putListLocation(String key, ArrayList<Location> objArray){
         checkForNullKey(key);
         Gson gson = new Gson();
@@ -538,7 +572,12 @@ public class TinyDB {
         putListString(key, objStrings);
     }
 
-    public void putHashMapUser(String key, HashMap<String, User> userMap) {
+    /**
+     * A hashmap for what we want
+     * @param key the key we are using
+     * @param userMap A map of the string and the user info
+     */
+    public void putHashMapUser(String key, Map<String, User> userMap) {
         Gson gson = new Gson();
         String hashMapString = gson.toJson(userMap);
         preferences.edit().putString(key, hashMapString).apply();
@@ -619,7 +658,7 @@ public class TinyDB {
     }
     /**
      * null keys would corrupt the shared pref file and make them unreadable this is a preventive measure
-     * @param the pref key
+     * @param key the pref key
      */
     public void checkForNullKey(String key){
         if (key == null){
@@ -628,7 +667,7 @@ public class TinyDB {
     }
     /**
      * null keys would corrupt the shared pref file and make them unreadable this is a preventive measure
-     * @param the pref key
+     * @param value the pref key
      */
     public void checkForNullValue(String value){
         if (value == null){

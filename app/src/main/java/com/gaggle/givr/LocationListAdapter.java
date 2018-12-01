@@ -1,6 +1,7 @@
 package com.gaggle.givr;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * The adapter for location
+ */
 public class LocationListAdapter extends ArrayAdapter<Location> {
-    private ArrayList<Location> list;
+    private List<Location> list;
     Context mContext;
 
     private static class ViewHolder {
@@ -18,15 +23,21 @@ public class LocationListAdapter extends ArrayAdapter<Location> {
         TextView address;
     }
 
-    public LocationListAdapter(ArrayList<Location> list, Context context) {
+    /**
+     * the constructor for location
+     * @param list the list of Locations
+     * @param context the context we're using
+     */
+    public LocationListAdapter(List<Location> list, Context context) {
         super(context, R.layout.location_item, list);
         this.list = list;
         this.mContext = context;
     }
 
+    @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Location loc = (Location) getItem(position);
+        Location loc = getItem(position);
         String addressString = loc.getStreetAddress() + ", "
                 + loc.getCity() + ", "
                 + loc.getState();

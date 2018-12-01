@@ -7,17 +7,25 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * the adapter to check the item and do magical things with the items
+ */
 public class ItemListAdapter extends ArrayAdapter<Item> {
-    private ArrayList<Item> list;
+    private List<Item> list;
     Context mContext;
 
     private static class ViewHolder {
         TextView name;
     }
 
-    public ItemListAdapter(ArrayList<Item> list, Context context) {
+    /**
+     * simple constructor
+     * @param list the list of Items
+     * @param context the context we are using for this Item object
+     */
+    public ItemListAdapter(List<Item> list, Context context) {
         super(context, R.layout.item_layout, list);
         this.list = list;
         this.mContext = context;

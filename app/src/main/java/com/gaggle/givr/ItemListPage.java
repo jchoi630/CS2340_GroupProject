@@ -12,6 +12,9 @@ import android.widget.Button;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * the list of all the items per location
+ */
 public class ItemListPage extends AppCompatActivity {
     TinyDB tinydb;
 
@@ -40,6 +43,7 @@ public class ItemListPage extends AppCompatActivity {
         });
         Button button = (Button) findViewById(R.id.back);
         button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 navigateToLocationListPage();
             }
@@ -59,12 +63,21 @@ public class ItemListPage extends AppCompatActivity {
         listAdapter.addAll(location.items);
     }
 
+    /**
+     * an intent for navigating to the edit Item page
+     * @param item the item we are editing
+     */
     public void navigateToEditItem(Item item) {
         Intent toItem = new Intent(ItemListPage.this, AddItemPage.class);
         toItem.putExtra("item", (Serializable) item);
         toItem.putExtra("location", (Serializable) location);
         ItemListPage.this.startActivityForResult(toItem, 1);
     }
+
+    /**
+     * Intent to go to the add item page
+     * @param v the view, page we're looking at
+     */
     public void navigateToAddItem(View v) {
         Intent toItem = new Intent(ItemListPage.this, AddItemPage.class);
         toItem.putExtra("item", (Serializable) new Item());
@@ -72,12 +85,19 @@ public class ItemListPage extends AppCompatActivity {
         ItemListPage.this.startActivityForResult(toItem, 1);
     }
 
+    /**
+     * Intent to go back to locationItemPage
+     * @param v the view
+     */
     public void navigateBackToLocationItemPage(View v) {
         //action you want, to start new activity, params are the things you go from (this page to next page)
         Intent backToLocationItemPage = new Intent(ItemListPage.this, LandingPage.class);
         ItemListPage.this.startActivity(backToLocationItemPage);
     }
 
+    /**
+     * Intent to go to the list of locations
+     */
     public void navigateToLocationListPage() {
         startActivity(new Intent(ItemListPage.this,LocationListPage.class));
     }
