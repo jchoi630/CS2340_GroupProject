@@ -41,6 +41,7 @@ public class LocationItemPage extends AppCompatActivity {
         setFields(location);
 
         item_button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 navigateToItemPage();
             }

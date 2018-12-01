@@ -43,6 +43,7 @@ public class ItemListPage extends AppCompatActivity {
         });
         Button button = (Button) findViewById(R.id.back);
         button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 navigateToLocationListPage();
             }

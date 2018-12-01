@@ -139,8 +139,9 @@ public class LoginActivity extends AppCompatActivity {
                 return R.string.signup_button;
             case FORGOT_PASSWORD:
                 return R.string.reset_button;
-            default:
             case LOGIN:
+                return R.string.login_button;
+            default:
                 return R.string.login_button;
         }
     }

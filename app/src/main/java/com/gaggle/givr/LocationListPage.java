@@ -34,7 +34,7 @@ public class LocationListPage extends AppCompatActivity {
         tinydb = new TinyDB(this);
 
         locations = tinydb.getListLocation("locations");
-        if (locations.size() == 0) {
+        if (locations.isEmpty()) {
             Location.locationList = importCSV();
             locations = Location.locationList;
             tinydb.putListLocation("locations", Location.locationList);
@@ -118,7 +118,7 @@ public class LocationListPage extends AppCompatActivity {
             br = new BufferedReader(new InputStreamReader(inputStream));
             while ((line = br.readLine()) != null) {
                 String[] locationData = line.split(csvSplitBy);
-                if (!(locationData[0].equals("Key"))) {
+                if (!"Key".equals(locationData[0])) {
                     Location l = new Location(locationData[0], locationData[1], locationData[2], locationData[3], locationData[4], locationData[5], locationData[6], locationData[7], locationData[8], locationData[9], locationData[10]);
                     locationList.add(l);
                 }
